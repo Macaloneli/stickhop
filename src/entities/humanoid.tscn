@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://wmry7i1a3h60"]
+[gd_scene load_steps=20 format=3 uid="uid://wmry7i1a3h60"]
 
+[ext_resource type="Script" uid="uid://bw422yyrx0ees" path="res://src/entities/humanoid_anim_rig.gd" id="1_q781o"]
+[ext_resource type="Script" uid="uid://bs7t4apy6xgv6" path="res://src/entities/humanoid.gd" id="1_ybg4g"]
 [ext_resource type="Script" uid="uid://cp2rbnib7h78t" path="res://src/entities/physics_rig_bone.gd" id="2_82tw3"]
+[ext_resource type="Script" uid="uid://dbccgqya24bmy" path="res://src/components/gravity_component.gd" id="2_q781o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_82tw3"]
 radius = 13.0
-height = 80.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hhcxp"]
 size = Vector2(15, 5)
@@ -18,12 +20,230 @@ size = Vector2(7, 15)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q781o"]
 size = Vector2(16, 16)
 
+[sub_resource type="Animation" id="Animation_ybg4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hips/LeftUpperLeg:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hips/LeftUpperLeg:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hips/RightUpperLeg:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hips/RightUpperLeg:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 10)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hips/Torso:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hips/Torso:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_82tw3"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_q781o"]
+resource_name = "walk_left"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hips/LeftUpperLeg:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.76666665, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.2617994, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hips/LeftUpperLeg:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.76666665, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, 10), Vector2(-3, 10), Vector2(-6, 10), Vector2(-3, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hips/RightUpperLeg:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333332, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.2617993877991494, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hips/RightUpperLeg:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333332, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 10), Vector2(0, 10), Vector2(3, 10)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hips/Torso:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.05235988]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hips/Torso:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_w1lue"]
+resource_name = "walk_right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hips/LeftUpperLeg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, 10), Vector2(0, 10), Vector2(-3, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hips/LeftUpperLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.2617994, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hips/RightUpperLeg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 0.7666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 10), Vector2(6, 10), Vector2(3, 10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hips/RightUpperLeg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 0.7666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.2617994, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybg4g"]
+_data = {
+&"RESET": SubResource("Animation_ybg4g"),
+&"idle": SubResource("Animation_82tw3"),
+&"walk_left": SubResource("Animation_q781o"),
+&"walk_right": SubResource("Animation_w1lue")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhcxp"]
 radius = 3.0
 height = 15.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ldi6h"]
 radius = 7.5
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ybg4g"]
+friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q781o"]
 radius = 3.5
@@ -33,14 +253,19 @@ height = 15.0
 radius = 8.0
 
 [node name="Humanoid" type="CharacterBody2D"]
-collision_layer = 6
+collision_layer = 2
 collision_mask = 3
+platform_floor_layers = 4294967287
+script = ExtResource("1_ybg4g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, 18)
 shape = SubResource("CapsuleShape2D_82tw3")
 
-[node name="AnimRig" type="Node2D" parent="."]
+[node name="AnimRig" type="Node2D" parent="." node_paths=PackedStringArray("body")]
+visible = false
+script = ExtResource("1_q781o")
+body = NodePath("..")
 
 [node name="Hips" type="Node2D" parent="AnimRig"]
 
@@ -84,7 +309,7 @@ position = Vector2(0, -23)
 texture = SubResource("PlaceholderTexture2D_q781o")
 
 [node name="LeftUpperLeg" type="Node2D" parent="AnimRig/Hips"]
-position = Vector2(-3, 10)
+position = Vector2(0, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/LeftUpperLeg"]
 texture = SubResource("PlaceholderTexture2D_82tw3")
@@ -107,6 +332,12 @@ position = Vector2(0, 15)
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/RightUpperLeg/RightLowerLeg"]
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimRig"]
+libraries = {
+&"": SubResource("AnimationLibrary_ybg4g")
+}
+autoplay = "idle"
+
 [node name="PhysicsRig" type="Node2D" parent="."]
 
 [node name="Hips" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
@@ -115,6 +346,7 @@ inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+linear_stiffness = 950.0
 anim_rig_bone = NodePath("../../AnimRig/Hips")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -132,6 +364,7 @@ inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+angular_stiffness = 30.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/Torso")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -144,10 +377,12 @@ shape = SubResource("CapsuleShape2D_ldi6h")
 [node name="LeftUpperLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
 position = Vector2(-3, 10)
 collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_ybg4g")
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+angular_stiffness = 1000.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/LeftUpperLeg")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -160,10 +395,12 @@ shape = SubResource("CapsuleShape2D_q781o")
 [node name="LeftLowerLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
 position = Vector2(-3, 25)
 collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_ybg4g")
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+angular_stiffness = 1000.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/LeftUpperLeg/LeftLowerLeg")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -176,10 +413,12 @@ shape = SubResource("CapsuleShape2D_q781o")
 [node name="RightUpperLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
 position = Vector2(3, 10)
 collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_ybg4g")
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+angular_stiffness = 1000.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/RightUpperLeg")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -192,10 +431,12 @@ shape = SubResource("CapsuleShape2D_q781o")
 [node name="RightLowerLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
 position = Vector2(3, 25)
 collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_ybg4g")
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+angular_stiffness = 1000.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/RightUpperLeg/RightLowerLeg")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -228,6 +469,8 @@ inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+linear_stiffness = 10.0
+angular_stiffness = 20.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/LeftUpperArm")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -244,6 +487,8 @@ inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+linear_stiffness = 10.0
+angular_stiffness = 20.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/LeftUpperArm/LeftLowerArm")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -260,6 +505,8 @@ inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+linear_stiffness = 10.0
+angular_stiffness = 20.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/RightUpperArm")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -276,6 +523,8 @@ inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+linear_stiffness = 10.0
+angular_stiffness = 20.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/RightUpperArm/RightLowerArm")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -366,3 +615,8 @@ node_b = NodePath("../../RightLowerLeg")
 softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
+
+[node name="GravityComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("2_q781o")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://dbccgqya24bmy"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://f0l5utwddd63"]
+
+[ext_resource type="PackedScene" uid="uid://wmry7i1a3h60" path="res://src/entities/humanoid.tscn" id="1_km3t1"]
+[ext_resource type="Script" uid="uid://djinmo6gkeool" path="res://src/components/player_input_component.gd" id="2_2dayb"]
+
+[node name="Player" instance=ExtResource("1_km3t1")]
+
+[node name="Hips" parent="PhysicsRig" index="0"]
+linear_stiffness = 1000.0
+
+[node name="PlayerInputComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("humanoid")]
+script = ExtResource("2_2dayb")
+humanoid = NodePath("..")
+metadata/_custom_type_script = "uid://djinmo6gkeool"

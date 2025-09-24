@@ -1,16 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2rurw5ollute"]
+[gd_scene load_steps=5 format=3 uid="uid://d2rurw5ollute"]
 
-[ext_resource type="PackedScene" uid="uid://wmry7i1a3h60" path="res://src/entities/humanoid.tscn" id="1_ssol6"]
+[ext_resource type="PackedScene" uid="uid://f0l5utwddd63" path="res://src/entities/humanoid_player.tscn" id="1_ssol6"]
+[ext_resource type="Script" uid="uid://dfewma1m3ard6" path="res://src/lookahead_camera.gd" id="2_8620d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ssol6"]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_8620d"]
+size = Vector2(5000, 50)
+orientation = 2
+
 [node name="WorldRoot" type="Node2D"]
 
-[node name="Humanoid" parent="." instance=ExtResource("1_ssol6")]
-position = Vector2(303, 129)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 320)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 320)
 shape = SubResource("WorldBoundaryShape2D_ssol6")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+position = Vector2(0, 27)
+mesh = SubResource("PlaneMesh_8620d")
+
+[node name="Player" parent="." instance=ExtResource("1_ssol6")]
+position = Vector2(311, 180)
+platform_floor_layers = 4294967295
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.3, 1.3)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+script = ExtResource("2_8620d")
