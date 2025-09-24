@@ -1,4 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://wmry7i1a3h60"]
+[gd_scene load_steps=11 format=3 uid="uid://wmry7i1a3h60"]
+
+[ext_resource type="Script" uid="uid://cp2rbnib7h78t" path="res://src/entities/physics_rig_bone.gd" id="2_82tw3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_82tw3"]
 radius = 13.0
@@ -7,41 +9,114 @@ height = 80.0
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hhcxp"]
 size = Vector2(15, 5)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhcxp"]
-radius = 2.5
-height = 15.0
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ldi6h"]
 size = Vector2(15, 30)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ldi6h"]
-radius = 7.5
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_82tw3"]
 size = Vector2(7, 15)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q781o"]
+size = Vector2(16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhcxp"]
+radius = 3.0
+height = 15.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ldi6h"]
+radius = 7.5
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q781o"]
 radius = 3.5
 height = 15.0
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q781o"]
-size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hhcxp"]
 radius = 8.0
 
 [node name="Humanoid" type="CharacterBody2D"]
 collision_layer = 6
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_82tw3")
 
+[node name="AnimRig" type="Node2D" parent="."]
+
+[node name="Hips" type="Node2D" parent="AnimRig"]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips"]
+texture = SubResource("PlaceholderTexture2D_hhcxp")
+
+[node name="Torso" type="Node2D" parent="AnimRig/Hips"]
+position = Vector2(0, -15)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso"]
+texture = SubResource("PlaceholderTexture2D_ldi6h")
+
+[node name="LeftUpperArm" type="Node2D" parent="AnimRig/Hips/Torso"]
+position = Vector2(0, -7)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/LeftUpperArm"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="LeftLowerArm" type="Node2D" parent="AnimRig/Hips/Torso/LeftUpperArm"]
+position = Vector2(0, 15)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/LeftUpperArm/LeftLowerArm"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="RightUpperArm" type="Node2D" parent="AnimRig/Hips/Torso"]
+position = Vector2(0, -7)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/RightUpperArm"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="RightLowerArm" type="Node2D" parent="AnimRig/Hips/Torso/RightUpperArm"]
+position = Vector2(0, 15)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/RightUpperArm/RightLowerArm"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="Head" type="Node2D" parent="AnimRig/Hips/Torso"]
+position = Vector2(0, -23)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/Head"]
+texture = SubResource("PlaceholderTexture2D_q781o")
+
+[node name="LeftUpperLeg" type="Node2D" parent="AnimRig/Hips"]
+position = Vector2(-3, 10)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/LeftUpperLeg"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="LeftLowerLeg" type="Node2D" parent="AnimRig/Hips/LeftUpperLeg"]
+position = Vector2(0, 15)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/LeftUpperLeg/LeftLowerLeg"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="RightUpperLeg" type="Node2D" parent="AnimRig/Hips"]
+position = Vector2(3, 10)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/RightUpperLeg"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="RightLowerLeg" type="Node2D" parent="AnimRig/Hips/RightUpperLeg"]
+position = Vector2(0, 15)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/RightUpperLeg/RightLowerLeg"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
 [node name="PhysicsRig" type="Node2D" parent="."]
 
-[node name="Hips" type="RigidBody2D" parent="PhysicsRig"]
+[node name="Hips" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
 collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips"]
 texture = SubResource("PlaceholderTexture2D_hhcxp")
@@ -50,102 +125,244 @@ texture = SubResource("PlaceholderTexture2D_hhcxp")
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_hhcxp")
 
-[node name="Torso" type="RigidBody2D" parent="PhysicsRig/Hips"]
+[node name="Torso" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
 position = Vector2(0, -15)
 collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/Torso")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/Torso"]
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Torso"]
 texture = SubResource("PlaceholderTexture2D_ldi6h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/Torso"]
-rotation = 3.1415927
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Torso"]
 shape = SubResource("CapsuleShape2D_ldi6h")
 
-[node name="LeftUpperArm" type="RigidBody2D" parent="PhysicsRig/Hips/Torso"]
-position = Vector2(0, -7)
-collision_layer = 4
-
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/Torso/LeftUpperArm"]
-texture = SubResource("PlaceholderTexture2D_82tw3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/Torso/LeftUpperArm"]
-shape = SubResource("CapsuleShape2D_q781o")
-
-[node name="LeftLowerArm" type="RigidBody2D" parent="PhysicsRig/Hips/Torso/LeftUpperArm"]
-position = Vector2(0, 15)
-collision_layer = 4
-
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/Torso/LeftUpperArm/LeftLowerArm"]
-texture = SubResource("PlaceholderTexture2D_82tw3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/Torso/LeftUpperArm/LeftLowerArm"]
-shape = SubResource("CapsuleShape2D_q781o")
-
-[node name="RightUpperArm" type="RigidBody2D" parent="PhysicsRig/Hips/Torso"]
-position = Vector2(0, -7)
-collision_layer = 4
-
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/Torso/RightUpperArm"]
-texture = SubResource("PlaceholderTexture2D_82tw3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/Torso/RightUpperArm"]
-shape = SubResource("CapsuleShape2D_q781o")
-
-[node name="RightLowerArm" type="RigidBody2D" parent="PhysicsRig/Hips/Torso/RightUpperArm"]
-position = Vector2(0, 15)
-collision_layer = 4
-
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/Torso/RightUpperArm/RightLowerArm"]
-texture = SubResource("PlaceholderTexture2D_82tw3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/Torso/RightUpperArm/RightLowerArm"]
-shape = SubResource("CapsuleShape2D_q781o")
-
-[node name="Head" type="RigidBody2D" parent="PhysicsRig/Hips/Torso"]
-position = Vector2(0, -23)
-
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/Torso/Head"]
-texture = SubResource("PlaceholderTexture2D_q781o")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/Torso/Head"]
-shape = SubResource("CircleShape2D_hhcxp")
-
-[node name="LeftUpperLeg" type="RigidBody2D" parent="PhysicsRig/Hips"]
+[node name="LeftUpperLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
 position = Vector2(-3, 10)
 collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/LeftUpperLeg")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/LeftUpperLeg"]
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/LeftUpperLeg"]
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/LeftUpperLeg"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/LeftUpperLeg"]
 shape = SubResource("CapsuleShape2D_q781o")
 
-[node name="LeftLowerLeg" type="RigidBody2D" parent="PhysicsRig/Hips/LeftUpperLeg"]
-position = Vector2(0, 15)
+[node name="LeftLowerLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
+position = Vector2(-3, 25)
 collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/LeftUpperLeg/LeftLowerLeg")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/LeftUpperLeg/LeftLowerLeg"]
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/LeftLowerLeg"]
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/LeftUpperLeg/LeftLowerLeg"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/LeftLowerLeg"]
 shape = SubResource("CapsuleShape2D_q781o")
 
-[node name="RightUpperLeg" type="RigidBody2D" parent="PhysicsRig/Hips"]
+[node name="RightUpperLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
 position = Vector2(3, 10)
 collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/RightUpperLeg")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/RightUpperLeg"]
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/RightUpperLeg"]
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/RightUpperLeg"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/RightUpperLeg"]
 shape = SubResource("CapsuleShape2D_q781o")
 
-[node name="RightLowerLeg" type="RigidBody2D" parent="PhysicsRig/Hips/RightUpperLeg"]
-position = Vector2(0, 15)
+[node name="RightLowerLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
+position = Vector2(3, 25)
 collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/RightUpperLeg/RightLowerLeg")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Hips/RightUpperLeg/RightLowerLeg"]
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/RightLowerLeg"]
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Hips/RightUpperLeg/RightLowerLeg"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/RightLowerLeg"]
 shape = SubResource("CapsuleShape2D_q781o")
+
+[node name="Head" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
+position = Vector2(0, -38)
+collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/Head")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
+
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Head"]
+texture = SubResource("PlaceholderTexture2D_q781o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Head"]
+shape = SubResource("CircleShape2D_hhcxp")
+
+[node name="LeftUpperArm" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
+position = Vector2(0, -22)
+collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/LeftUpperArm")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
+
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/LeftUpperArm"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/LeftUpperArm"]
+shape = SubResource("CapsuleShape2D_q781o")
+
+[node name="LeftLowerArm" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
+position = Vector2(0, -7)
+collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/LeftUpperArm/LeftLowerArm")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
+
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/LeftLowerArm"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/LeftLowerArm"]
+shape = SubResource("CapsuleShape2D_q781o")
+
+[node name="RightUpperArm" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
+position = Vector2(0, -22)
+collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/RightUpperArm")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
+
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/RightUpperArm"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/RightUpperArm"]
+shape = SubResource("CapsuleShape2D_q781o")
+
+[node name="RightLowerArm" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
+position = Vector2(0, -7)
+collision_layer = 4
+inertia = 3.0
+continuous_cd = 2
+linear_damp = 1.0
+script = ExtResource("2_82tw3")
+anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/RightUpperArm/RightLowerArm")
+metadata/_custom_type_script = "uid://cp2rbnib7h78t"
+
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/RightLowerArm"]
+texture = SubResource("PlaceholderTexture2D_82tw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/RightLowerArm"]
+shape = SubResource("CapsuleShape2D_q781o")
+
+[node name="Joints" type="Node2D" parent="PhysicsRig"]
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(3, 3)
+node_a = NodePath("../../Hips")
+node_b = NodePath("../../RightUpperLeg")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(0, 1)
+node_a = NodePath("../../Hips")
+node_b = NodePath("../../Torso")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(-3, 3)
+node_a = NodePath("../../Hips")
+node_b = NodePath("../../LeftUpperLeg")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(0, -27)
+node_a = NodePath("../../Torso")
+node_b = NodePath("../../LeftUpperArm")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(0, -27)
+node_a = NodePath("../../Torso")
+node_b = NodePath("../../RightUpperArm")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(0, -30)
+node_a = NodePath("../../Torso")
+node_b = NodePath("../../Head")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(0, -14.5)
+node_a = NodePath("../../LeftUpperArm")
+node_b = NodePath("../../LeftLowerArm")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D8" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(0, -14.5)
+node_a = NodePath("../../RightUpperArm")
+node_b = NodePath("../../RightLowerArm")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D9" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(-3, 18)
+node_a = NodePath("../../LeftUpperLeg")
+node_b = NodePath("../../LeftLowerLeg")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
+
+[node name="PinJoint2D10" type="PinJoint2D" parent="PhysicsRig/Joints"]
+position = Vector2(3, 18)
+node_a = NodePath("../../RightUpperLeg")
+node_b = NodePath("../../RightLowerLeg")
+softness = 5.0
+angular_limit_lower = -1.5707964
+angular_limit_upper = 1.5707964
