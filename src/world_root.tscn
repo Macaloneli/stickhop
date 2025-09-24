@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2rurw5ollute"]
+
+[ext_resource type="PackedScene" uid="uid://wmry7i1a3h60" path="res://src/entities/humanoid.tscn" id="1_ssol6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ssol6"]
+
+[node name="WorldRoot" type="Node2D"]
+
+[node name="Humanoid" parent="." instance=ExtResource("1_ssol6")]
+position = Vector2(303, 129)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 320)
+shape = SubResource("WorldBoundaryShape2D_ssol6")
