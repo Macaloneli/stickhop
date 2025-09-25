@@ -6,7 +6,7 @@ class_name PhysicsRigBone
 @export var linear_damping: float = 1.0
 @export var angular_damping: float = 1.0
 
-@export var anim_rig_bone: Node2D
+@export var anim_rig_bone: Bone2D
 
 func _physics_process(delta: float) -> void:
 	var position_difference = global_position - anim_rig_bone.global_position

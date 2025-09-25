@@ -5,6 +5,17 @@
 
 [node name="Player" instance=ExtResource("1_km3t1")]
 
+[node name="LeftUpperLeg" parent="AnimRig/Hips" index="2"]
+rotation = 0.025044791
+
+[node name="LeftLowerLeg" parent="AnimRig/Hips/LeftUpperLeg" index="1"]
+position = Vector2(-4.7683716e-07, 14.999999)
+rotation = 0.016542554
+scale = Vector2(0.9999997, 0.9999997)
+
+[node name="RightLowerLeg" parent="AnimRig/Hips/RightUpperLeg" index="1"]
+position = Vector2(-9.536743e-07, 14.999998)
+
 [node name="Hips" parent="PhysicsRig" index="0"]
 linear_stiffness = 1000.0
 

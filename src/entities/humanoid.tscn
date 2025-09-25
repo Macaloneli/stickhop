@@ -1,12 +1,39 @@
-[gd_scene load_steps=20 format=3 uid="uid://wmry7i1a3h60"]
+[gd_scene load_steps=19 format=3 uid="uid://wmry7i1a3h60"]
 
-[ext_resource type="Script" uid="uid://bw422yyrx0ees" path="res://src/entities/humanoid_anim_rig.gd" id="1_q781o"]
 [ext_resource type="Script" uid="uid://bs7t4apy6xgv6" path="res://src/entities/humanoid.gd" id="1_ybg4g"]
 [ext_resource type="Script" uid="uid://cp2rbnib7h78t" path="res://src/entities/physics_rig_bone.gd" id="2_82tw3"]
 [ext_resource type="Script" uid="uid://dbccgqya24bmy" path="res://src/components/gravity_component.gd" id="2_q781o"]
+[ext_resource type="Script" uid="uid://baq2ef07ngh8r" path="res://src/entities/footplanter.gd" id="2_ybg4g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_82tw3"]
 radius = 13.0
+height = 29.0
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_ybg4g"]
+target_nodepath = NodePath("LegIKTargetLeft")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 7
+joint_data/0/bone2d_node = NodePath("Hips/LeftUpperLeg")
+joint_data/1/bone_index = 8
+joint_data/1/bone2d_node = NodePath("Hips/LeftUpperLeg/LeftLowerLeg")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_w1lue"]
+target_nodepath = NodePath("LegIKTargetRight")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 9
+joint_data/0/bone2d_node = NodePath("Hips/RightUpperLeg")
+joint_data/1/bone_index = 10
+joint_data/1/bone2d_node = NodePath("Hips/RightUpperLeg/RightLowerLeg")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_w1lue"]
+enabled = true
+modification_count = 2
+modifications/0 = SubResource("SkeletonModification2DFABRIK_ybg4g")
+modifications/1 = SubResource("SkeletonModification2DFABRIK_w1lue")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hhcxp"]
 size = Vector2(15, 5)
@@ -20,220 +47,7 @@ size = Vector2(7, 15)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q781o"]
 size = Vector2(16, 16)
 
-[sub_resource type="Animation" id="Animation_ybg4g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hips/LeftUpperLeg:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hips/LeftUpperLeg:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 10)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hips/RightUpperLeg:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hips/RightUpperLeg:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3, 10)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Hips/Torso:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Hips/Torso:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -15)]
-}
-
-[sub_resource type="Animation" id="Animation_82tw3"]
-resource_name = "idle"
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_q781o"]
-resource_name = "walk_left"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hips/LeftUpperLeg:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.76666665, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.2617994, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hips/LeftUpperLeg:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.76666665, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-3, 10), Vector2(-3, 10), Vector2(-6, 10), Vector2(-3, 10)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hips/RightUpperLeg:rotation")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.23333332, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.2617993877991494, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hips/RightUpperLeg:position")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.23333332, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(3, 10), Vector2(0, 10), Vector2(3, 10)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Hips/Torso:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.05235988]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Hips/Torso:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, -15)]
-}
-
-[sub_resource type="Animation" id="Animation_w1lue"]
-resource_name = "walk_right"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hips/LeftUpperLeg:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23333335, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-3, 10), Vector2(0, 10), Vector2(-3, 10)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hips/LeftUpperLeg:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.23333335, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.2617994, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hips/RightUpperLeg:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 0.7666667, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(3, 10), Vector2(6, 10), Vector2(3, 10)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hips/RightUpperLeg:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.5, 0.7666667, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.2617994, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybg4g"]
-_data = {
-&"RESET": SubResource("Animation_ybg4g"),
-&"idle": SubResource("Animation_82tw3"),
-&"walk_left": SubResource("Animation_q781o"),
-&"walk_right": SubResource("Animation_w1lue")
-}
+[sub_resource type="QuadMesh" id="QuadMesh_ybg4g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhcxp"]
 radius = 3.0
@@ -262,91 +76,159 @@ script = ExtResource("1_ybg4g")
 position = Vector2(0, 18)
 shape = SubResource("CapsuleShape2D_82tw3")
 
-[node name="AnimRig" type="Node2D" parent="." node_paths=PackedStringArray("body")]
-visible = false
-script = ExtResource("1_q781o")
-body = NodePath("..")
+[node name="AnimRig" type="Skeleton2D" parent="."]
+position = Vector2(0, -4)
+modification_stack = SubResource("SkeletonModificationStack2D_w1lue")
 
-[node name="Hips" type="Node2D" parent="AnimRig"]
+[node name="Hips" type="Bone2D" parent="AnimRig"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips"]
 texture = SubResource("PlaceholderTexture2D_hhcxp")
 
-[node name="Torso" type="Node2D" parent="AnimRig/Hips"]
-position = Vector2(0, -15)
+[node name="Torso" type="Bone2D" parent="AnimRig/Hips"]
+position = Vector2(0, -18)
+rest = Transform2D(1, 0, 0, 1, 0, -15)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso"]
 texture = SubResource("PlaceholderTexture2D_ldi6h")
 
-[node name="LeftUpperArm" type="Node2D" parent="AnimRig/Hips/Torso"]
-position = Vector2(0, -7)
+[node name="LeftUpperArm" type="Bone2D" parent="AnimRig/Hips/Torso"]
+position = Vector2(0, -13)
+rest = Transform2D(1, 0, 0, 1, 0, -13)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/LeftUpperArm"]
+position = Vector2(0, 6)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="LeftLowerArm" type="Node2D" parent="AnimRig/Hips/Torso/LeftUpperArm"]
-position = Vector2(0, 15)
+[node name="LeftLowerArm" type="Bone2D" parent="AnimRig/Hips/Torso/LeftUpperArm"]
+position = Vector2(0, 13)
+rest = Transform2D(1, 0, 0, 1, 0, 13)
+auto_calculate_length_and_angle = false
+length = 15.5
+bone_angle = 90.0
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/LeftUpperArm/LeftLowerArm"]
+position = Vector2(0, 8)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="RightUpperArm" type="Node2D" parent="AnimRig/Hips/Torso"]
-position = Vector2(0, -7)
+[node name="RightUpperArm" type="Bone2D" parent="AnimRig/Hips/Torso"]
+position = Vector2(0, -13)
+rest = Transform2D(1, 0, 0, 1, 0, -13)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/RightUpperArm"]
+position = Vector2(0, 6)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="RightLowerArm" type="Node2D" parent="AnimRig/Hips/Torso/RightUpperArm"]
-position = Vector2(0, 15)
+[node name="RightLowerArm" type="Bone2D" parent="AnimRig/Hips/Torso/RightUpperArm"]
+position = Vector2(0, 13)
+rest = Transform2D(1, 0, 0, 1, 0, 13)
+auto_calculate_length_and_angle = false
+length = 15.5
+bone_angle = 90.0
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/RightUpperArm/RightLowerArm"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="Head" type="Node2D" parent="AnimRig/Hips/Torso"]
-position = Vector2(0, -23)
+[node name="Head" type="Bone2D" parent="AnimRig/Hips/Torso"]
+position = Vector2(0, -16)
+rest = Transform2D(1, 0, 0, 1, 0, -15)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -90.0
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/Torso/Head"]
+position = Vector2(0, -8)
 texture = SubResource("PlaceholderTexture2D_q781o")
 
-[node name="LeftUpperLeg" type="Node2D" parent="AnimRig/Hips"]
-position = Vector2(0, 10)
+[node name="LeftUpperLeg" type="Bone2D" parent="AnimRig/Hips"]
+position = Vector2(-3, 3)
+rest = Transform2D(1, 0, 0, 1, -3, 3)
+auto_calculate_length_and_angle = false
+length = 15.0
+bone_angle = 90.0
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/LeftUpperLeg"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="LeftLowerLeg" type="Node2D" parent="AnimRig/Hips/LeftUpperLeg"]
+[node name="LeftLowerLeg" type="Bone2D" parent="AnimRig/Hips/LeftUpperLeg"]
 position = Vector2(0, 15)
+rest = Transform2D(1, 0, 0, 1, 0, 15)
+auto_calculate_length_and_angle = false
+length = 14.5
+bone_angle = 90.0
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/LeftUpperLeg/LeftLowerLeg"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="RightUpperLeg" type="Node2D" parent="AnimRig/Hips"]
-position = Vector2(3, 10)
+[node name="RightUpperLeg" type="Bone2D" parent="AnimRig/Hips"]
+position = Vector2(3, 3)
+rest = Transform2D(1, 0, 0, 1, 3, 3)
+auto_calculate_length_and_angle = false
+length = 14.999998
+bone_angle = 90.0
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/RightUpperLeg"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="RightLowerLeg" type="Node2D" parent="AnimRig/Hips/RightUpperLeg"]
+[node name="RightLowerLeg" type="Bone2D" parent="AnimRig/Hips/RightUpperLeg"]
 position = Vector2(0, 15)
+rest = Transform2D(1, 0, 0, 1, 0, 15)
+auto_calculate_length_and_angle = false
+length = 14.5
+bone_angle = 90.0
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimRig/Hips/RightUpperLeg/RightLowerLeg"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimRig"]
-libraries = {
-&"": SubResource("AnimationLibrary_ybg4g")
-}
-autoplay = "idle"
+[node name="LegIKTargetLeft" type="Marker2D" parent="AnimRig" node_paths=PackedStringArray("humanoid", "footplant_raycast")]
+position = Vector2(-4, 33)
+script = ExtResource("2_ybg4g")
+humanoid = NodePath("../..")
+footplant_raycast = NodePath("../../RayCast2D2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="AnimRig/LegIKTargetLeft"]
+mesh = SubResource("QuadMesh_ybg4g")
+
+[node name="LegIKTargetRight" type="Marker2D" parent="AnimRig" node_paths=PackedStringArray("humanoid", "footplant_raycast")]
+position = Vector2(3, 33)
+script = ExtResource("2_ybg4g")
+humanoid = NodePath("../..")
+footplant_raycast = NodePath("../../RayCast2D")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="AnimRig/LegIKTargetRight"]
+mesh = SubResource("QuadMesh_ybg4g")
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(-4, 29)
+target_position = Vector2(0, 20)
+hit_from_inside = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+top_level = true
+position = Vector2(3, 29)
+target_position = Vector2(0, 20)
+hit_from_inside = true
 
 [node name="PhysicsRig" type="Node2D" parent="."]
+position = Vector2(0, -5)
 
 [node name="Hips" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
+position = Vector2(0, -2)
 collision_layer = 4
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
-linear_stiffness = 950.0
 anim_rig_bone = NodePath("../../AnimRig/Hips")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -358,13 +240,12 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_hhcxp")
 
 [node name="Torso" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(0, -15)
+position = Vector2(0, -19)
 collision_layer = 4
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
-angular_stiffness = 30.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/Torso")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
@@ -375,95 +256,119 @@ texture = SubResource("PlaceholderTexture2D_ldi6h")
 shape = SubResource("CapsuleShape2D_ldi6h")
 
 [node name="LeftUpperLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(-3, 10)
+position = Vector2(-3, 2)
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_ybg4g")
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
-angular_stiffness = 1000.0
+linear_stiffness = 100.0
+angular_stiffness = 100.0
+linear_damping = 5.0
+angular_damping = 5.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/LeftUpperLeg")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/LeftUpperLeg"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/LeftUpperLeg"]
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_q781o")
 
 [node name="LeftLowerLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(-3, 25)
+position = Vector2(-3, 17)
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_ybg4g")
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
-angular_stiffness = 1000.0
+linear_stiffness = 100.0
+angular_stiffness = 100.0
+linear_damping = 5.0
+angular_damping = 5.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/LeftUpperLeg/LeftLowerLeg")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/LeftLowerLeg"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/LeftLowerLeg"]
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_q781o")
 
 [node name="RightUpperLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(3, 10)
+position = Vector2(3, 2)
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_ybg4g")
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
-angular_stiffness = 1000.0
+linear_stiffness = 100.0
+angular_stiffness = 100.0
+linear_damping = 5.0
+angular_damping = 5.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/RightUpperLeg")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/RightUpperLeg"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/RightUpperLeg"]
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_q781o")
 
 [node name="RightLowerLeg" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(3, 25)
+position = Vector2(3, 17)
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_ybg4g")
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
-angular_stiffness = 1000.0
+linear_stiffness = 100.0
+angular_stiffness = 100.0
+linear_damping = 5.0
+angular_damping = 5.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/RightUpperLeg/RightLowerLeg")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/RightLowerLeg"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/RightLowerLeg"]
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_q781o")
 
 [node name="Head" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(0, -38)
+position = Vector2(0, -33)
 collision_layer = 4
 inertia = 3.0
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("2_82tw3")
+linear_damping = 50.0
+angular_damping = 50.0
 anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/Head")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/Head"]
+position = Vector2(0, -7)
 texture = SubResource("PlaceholderTexture2D_q781o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/Head"]
+position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_hhcxp")
 
 [node name="LeftUpperArm" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(0, -22)
+position = Vector2(0, -25)
 collision_layer = 4
 inertia = 3.0
 continuous_cd = 2
@@ -475,13 +380,15 @@ anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/LeftUpperArm")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/LeftUpperArm"]
+position = Vector2(0, 5)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/LeftUpperArm"]
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_q781o")
 
 [node name="LeftLowerArm" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(0, -7)
+position = Vector2(0, -13)
 collision_layer = 4
 inertia = 3.0
 continuous_cd = 2
@@ -493,13 +400,15 @@ anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/LeftUpperArm/LeftLowerArm")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/LeftLowerArm"]
+position = Vector2(0, 8)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/LeftLowerArm"]
+position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_q781o")
 
 [node name="RightUpperArm" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(0, -22)
+position = Vector2(0, -25)
 collision_layer = 4
 inertia = 3.0
 continuous_cd = 2
@@ -511,13 +420,15 @@ anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/RightUpperArm")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/RightUpperArm"]
+position = Vector2(0, 5)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/RightUpperArm"]
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_q781o")
 
 [node name="RightLowerArm" type="RigidBody2D" parent="PhysicsRig" node_paths=PackedStringArray("anim_rig_bone")]
-position = Vector2(0, -7)
+position = Vector2(0, -13)
 collision_layer = 4
 inertia = 3.0
 continuous_cd = 2
@@ -529,9 +440,11 @@ anim_rig_bone = NodePath("../../AnimRig/Hips/Torso/RightUpperArm/RightLowerArm")
 metadata/_custom_type_script = "uid://cp2rbnib7h78t"
 
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsRig/RightLowerArm"]
+position = Vector2(0, 7)
 texture = SubResource("PlaceholderTexture2D_82tw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsRig/RightLowerArm"]
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_q781o")
 
 [node name="Joints" type="Node2D" parent="PhysicsRig"]
@@ -540,15 +453,12 @@ shape = SubResource("CapsuleShape2D_q781o")
 position = Vector2(3, 3)
 node_a = NodePath("../../Hips")
 node_b = NodePath("../../RightUpperLeg")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
 [node name="PinJoint2D" type="PinJoint2D" parent="PhysicsRig/Joints"]
-position = Vector2(0, 1)
 node_a = NodePath("../../Hips")
 node_b = NodePath("../../Torso")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
@@ -556,63 +466,55 @@ angular_limit_upper = 1.5707964
 position = Vector2(-3, 3)
 node_a = NodePath("../../Hips")
 node_b = NodePath("../../LeftUpperLeg")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="PhysicsRig/Joints"]
-position = Vector2(0, -27)
+position = Vector2(0, -28)
 node_a = NodePath("../../Torso")
 node_b = NodePath("../../LeftUpperArm")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
 [node name="PinJoint2D5" type="PinJoint2D" parent="PhysicsRig/Joints"]
-position = Vector2(0, -27)
+position = Vector2(0, -28)
 node_a = NodePath("../../Torso")
 node_b = NodePath("../../RightUpperArm")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
 [node name="PinJoint2D6" type="PinJoint2D" parent="PhysicsRig/Joints"]
-position = Vector2(0, -30)
+position = Vector2(0, -33)
 node_a = NodePath("../../Torso")
 node_b = NodePath("../../Head")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
 [node name="PinJoint2D7" type="PinJoint2D" parent="PhysicsRig/Joints"]
-position = Vector2(0, -14.5)
+position = Vector2(0, -13)
 node_a = NodePath("../../LeftUpperArm")
 node_b = NodePath("../../LeftLowerArm")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
 [node name="PinJoint2D8" type="PinJoint2D" parent="PhysicsRig/Joints"]
-position = Vector2(0, -14.5)
+position = Vector2(0, -13)
 node_a = NodePath("../../RightUpperArm")
 node_b = NodePath("../../RightLowerArm")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
 [node name="PinJoint2D9" type="PinJoint2D" parent="PhysicsRig/Joints"]
-position = Vector2(-3, 18)
+position = Vector2(-3, 20)
 node_a = NodePath("../../LeftUpperLeg")
 node_b = NodePath("../../LeftLowerLeg")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
 [node name="PinJoint2D10" type="PinJoint2D" parent="PhysicsRig/Joints"]
-position = Vector2(3, 18)
+position = Vector2(3, 20)
 node_a = NodePath("../../RightUpperLeg")
 node_b = NodePath("../../RightLowerLeg")
-softness = 5.0
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
 
