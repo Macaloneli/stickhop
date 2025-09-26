@@ -1,22 +1,16 @@
 extends RigidBody2D
 class_name PhysicsRigBone
 
-@export var linear_stiffness: float = 450.0
-@export var angular_stiffness: float = 450.0
-@export var linear_damping: float = 1.0
-@export var angular_damping: float = 1.0
-
+@export var angular_stiffness: float = 45
+@export var angular_damping: float = 1
 @export var anim_rig_bone: Bone2D
 
-func _physics_process(delta: float) -> void:
-	var position_difference = global_position - anim_rig_bone.global_position
-	var spring_force = -linear_stiffness * position_difference
-	var damping_force = -linear_damping * linear_velocity
-	apply_force(spring_force + damping_force)
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:	
+	var target_rotation = anim_rig_bone.global_rotation
 	
-	var rotation_difference = global_rotation - anim_rig_bone.global_rotation
-	var torque = -angular_stiffness * rotation_difference
-	var damping_torque = -angular_damping * angular_velocity
+	var angle_diff = target_rotation - global_rotation
+	var p = angle_diff * angular_stiffness
+	var d = -state.angular_velocity * angular_damping
+	var torque = p + d
 	
-	torque += damping_torque
-	apply_torque(torque * delta)
+	state.angular_velocity += torque

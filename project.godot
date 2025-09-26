@@ -46,9 +46,11 @@ move_jump={
 
 [layer_names]
 
-2d_physics/layer_2="EntityCapsule"
-2d_physics/layer_3="EntityPhysics"
+2d_physics/layer_2="EntityCapsuleFriendly"
+2d_physics/layer_3="EntityPhysicsFriendly"
 2d_physics/layer_4="EntityAnim"
+2d_physics/layer_7="EntityPhysicsHostile"
+2d_physics/layer_8="EntityCapsuleHostile"
 
 [physics]
 
