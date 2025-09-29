@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://404w2tqm2gq6"]
+
+[ext_resource type="FontFile" uid="uid://cu7p6ksqmo2fp" path="res://core/assets/fonts/Ldfcomicsansbold-zgma.ttf" id="1_qkuje"]
+[ext_resource type="Script" uid="uid://bndxq046kus8k" path="res://core/src/ui/bpm_scale_bump.gd" id="2_qoywa"]
+[ext_resource type="Script" uid="uid://tjxegpqjeuu" path="res://core/src/ost_rhythm_notifier.gd" id="3_f0s2b"]
+
+[sub_resource type="Theme" id="Theme_qkuje"]
+default_font = ExtResource("1_qkuje")
+
+[sub_resource type="LabelSettings" id="LabelSettings_uqkvv"]
+font = ExtResource("1_qkuje")
+
+[sub_resource type="Animation" id="Animation_ljhhu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_h03rr"]
+resource_name = "bump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:font_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.34),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [29, 32]
+}
+
+[sub_resource type="Animation" id="Animation_5mgu5"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_35tjg"]
+_data = {
+&"RESET": SubResource("Animation_ljhhu"),
+&"bump": SubResource("Animation_h03rr"),
+&"idle": SubResource("Animation_5mgu5")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_qkuje")
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SingleplayerButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+text = "Singleplayer"
+
+[node name="MultiplayerButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+disabled = true
+text = "Multiplayer"
+
+[node name="SettingsButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+disabled = true
+text = "Settings
+"
+
+[node name="QuitButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="GameTitle" type="Label" parent="." node_paths=PackedStringArray("rhythm_notifier")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.055555556
+anchor_right = 1.0
+anchor_bottom = 0.16388889
+offset_left = 12.5
+offset_right = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.006981317
+pivot_offset = Vector2(320, 19)
+text = "Stickhop"
+label_settings = SubResource("LabelSettings_uqkvv")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_qoywa")
+rhythm_notifier = NodePath("RhythmNotifier")
+
+[node name="RhythmNotifier" type="Node" parent="GameTitle"]
+script = ExtResource("3_f0s2b")
+metadata/_custom_type_script = "uid://dos3qhffr4v0a"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameTitle"]
+libraries = {
+&"": SubResource("AnimationLibrary_35tjg")
+}
+autoplay = "idle"

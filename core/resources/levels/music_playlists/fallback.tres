@@ -1,0 +1,16 @@
+[gd_resource type="AudioStreamPlaylist" load_steps=6 format=3 uid="uid://cm23qot4cjnn0"]
+
+[ext_resource type="AudioStream" uid="uid://dxq73483lutkx" path="res://core/assets/sounds/music/funky_town_low_quality.mp3" id="1_mddag"]
+[ext_resource type="AudioStream" uid="uid://eh5gbc4ihd0i" path="res://core/assets/sounds/music/red_red_wine_low_quality.mp3" id="2_y2xf4"]
+[ext_resource type="AudioStream" uid="uid://b6or5mda7pf3a" path="res://core/assets/sounds/music/electric_avenue_low_quality.mp3" id="3_0ohof"]
+[ext_resource type="AudioStream" uid="uid://cbxonmouxd06a" path="res://core/assets/sounds/music/psycho_killer_low_quality.mp3" id="4_fx5ec"]
+[ext_resource type="AudioStream" uid="uid://db0sr8cayb7sy" path="res://core/assets/sounds/music/cars_low_quality.mp3" id="5_8nq4k"]
+
+[resource]
+shuffle = true
+stream_count = 5
+stream_0 = ExtResource("1_mddag")
+stream_1 = ExtResource("2_y2xf4")
+stream_2 = ExtResource("3_0ohof")
+stream_3 = ExtResource("4_fx5ec")
+stream_4 = ExtResource("5_8nq4k")

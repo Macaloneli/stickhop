@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq5oieuc0x2pg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ipbqu"]
+size = Vector3(25, 25, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipbqu"]
+size = Vector2(25, 25)
+
+[node name="GrabbableBase" type="RigidBody2D" groups=["grabbable", "navigation_polygon_source_geometry_group"]]
+mass = 10.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("BoxMesh_ipbqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ipbqu")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." groups=["navigation_polygon_source_geometry_group"]]
+radius = 16.0
+vertices = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+carve_navigation_mesh = true

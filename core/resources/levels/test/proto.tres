@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://bj00o468j4has"]
+
+[ext_resource type="AudioStream" uid="uid://cm23qot4cjnn0" path="res://core/resources/levels/music_playlists/fallback.tres" id="1_77li6"]
+[ext_resource type="Script" uid="uid://bm1ig0ci1wo3s" path="res://core/src/levels/level_resource.gd" id="1_dhte8"]
+
+[resource]
+script = ExtResource("1_dhte8")
+level_name = "ProtoLevel"
+level_music = ExtResource("1_77li6")
+level_scene_path = "res://core/src/levels/scenes/proto.tscn"
+metadata/_custom_type_script = "uid://bm1ig0ci1wo3s"

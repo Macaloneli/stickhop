@@ -1,0 +1,135 @@
+[gd_scene load_steps=12 format=3 uid="uid://omkfgjl1xdbs"]
+
+[ext_resource type="PackedScene" uid="uid://wmry7i1a3h60" path="res://core/src/entities/living/humanoid.tscn" id="1_14ks4"]
+[ext_resource type="Script" uid="uid://cgd8rvvq8ligs" path="res://core/src/entities/living/humanoid_ai.gd" id="2_apcg8"]
+[ext_resource type="Script" uid="uid://44hb2r7btrir" path="res://core/src/entities/living/proto_enemy.gd" id="2_axcvs"]
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_vrh1m"]
+target_nodepath = NodePath("IKContainer/LegIKTargetLeft")
+joint_one_bone_idx = 7
+joint_one_bone2d_node = NodePath("Hips/LeftUpperLeg")
+joint_two_bone_idx = 8
+joint_two_bone2d_node = NodePath("Hips/LeftUpperLeg/LeftLowerLeg")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_ayd1b"]
+target_nodepath = NodePath("IKContainer/LegIKTargetRight")
+joint_one_bone_idx = 9
+joint_one_bone2d_node = NodePath("Hips/RightUpperLeg")
+joint_two_bone_idx = 10
+joint_two_bone2d_node = NodePath("Hips/RightUpperLeg/RightLowerLeg")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_wekbf"]
+target_nodepath = NodePath("ArmIKTargetLeft")
+joint_one_bone_idx = 2
+joint_one_bone2d_node = NodePath("Hips/Torso/LeftUpperArm")
+joint_two_bone_idx = 3
+joint_two_bone2d_node = NodePath("Hips/Torso/LeftUpperArm/LeftLowerArm")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_bcjve"]
+target_nodepath = NodePath("ArmIKTargetRight")
+joint_one_bone_idx = 4
+joint_one_bone2d_node = NodePath("Hips/Torso/RightUpperArm")
+joint_two_bone_idx = 5
+joint_two_bone2d_node = NodePath("Hips/Torso/RightUpperArm/RightLowerArm")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_et4wh"]
+resource_local_to_scene = true
+enabled = true
+modification_count = 4
+modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_vrh1m")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_ayd1b")
+modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_wekbf")
+modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_bcjve")
+
+[sub_resource type="Gradient" id="Gradient_vrh1m"]
+colors = PackedColorArray(0.7797686, 0, 0.19889352, 1, 0.8769745, 0, 0.45541847, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ayd1b"]
+frequency = 0.2448
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wekbf"]
+width = 16
+height = 16
+noise = SubResource("FastNoiseLite_ayd1b")
+color_ramp = SubResource("Gradient_vrh1m")
+normalize = false
+
+[node name="Humanoid" instance=ExtResource("1_14ks4")]
+collision_mask = 3
+script = ExtResource("2_apcg8")
+SPEED = 100.0
+
+[node name="AnimRig" parent="." index="3"]
+modification_stack = SubResource("SkeletonModificationStack2D_et4wh")
+
+[node name="LeftUpperArm" parent="AnimRig/Hips/Torso" index="1"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="LeftLowerArm" parent="AnimRig/Hips/Torso/LeftUpperArm" index="1"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RightUpperArm" parent="AnimRig/Hips/Torso" index="2"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RightLowerArm" parent="AnimRig/Hips/Torso/RightUpperArm" index="1"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="LeftUpperLeg" parent="AnimRig/Hips" index="2"]
+rotation = 0.033320904
+scale = Vector2(0.9999998, 0.9999998)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="LeftLowerLeg" parent="AnimRig/Hips/LeftUpperLeg" index="1"]
+position = Vector2(-1.4305115e-06, 15)
+scale = Vector2(0.99999994, 0.99999994)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RightUpperLeg" parent="AnimRig/Hips" index="3"]
+metadata/_local_pose_override_enabled_ = true
+
+[node name="RightLowerLeg" parent="AnimRig/Hips/RightUpperLeg" index="1"]
+position = Vector2(-1.1920929e-06, 14.999998)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="MeshInstance2D" parent="PhysicsRig/Hips" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D2" parent="PhysicsRig/Torso" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D3" parent="PhysicsRig/LeftUpperLeg" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D5" parent="PhysicsRig/LeftLowerLeg" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D4" parent="PhysicsRig/RightUpperLeg" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D6" parent="PhysicsRig/RightLowerLeg" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D" parent="PhysicsRig/Head" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D" parent="PhysicsRig/LeftUpperArm" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D2" parent="PhysicsRig/LeftLowerArm" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D" parent="PhysicsRig/RightUpperArm" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="MeshInstance2D2" parent="PhysicsRig/RightLowerArm" index="0"]
+texture = SubResource("NoiseTexture2D_wekbf")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="5" node_paths=PackedStringArray("humanoid")]
+simplify_path = true
+simplify_epsilon = 0.006
+avoidance_enabled = true
+radius = 25.0
+debug_enabled = true
+script = ExtResource("2_axcvs")
+humanoid = NodePath("..")
+reaction_time = 0.2
