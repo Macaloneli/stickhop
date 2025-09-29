@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://bgcviiuysl815"]
+[gd_scene load_steps=7 format=4 uid="uid://bgcviiuysl815"]
 
 [ext_resource type="Texture2D" uid="uid://x7j81x8semj4" path="res://core/assets/sprites/tilesets/proto.png" id="1_7ogwc"]
 [ext_resource type="PackedScene" uid="uid://cq5oieuc0x2pg" path="res://core/src/entities/grabbable_base.tscn" id="2_oecx5"]
+[ext_resource type="Script" uid="uid://dpvsnrmcg8l0q" path="res://core/src/entities/player_spawner.gd" id="3_oecx5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h4icc"]
 texture = ExtResource("1_7ogwc")
@@ -404,3 +405,9 @@ position = Vector2(376, 224)
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://f0l5utwddd63", "uid://omkfgjl1xdbs")
 spawn_path = NodePath("..")
+
+[node name="PlayerSpawner" type="Node2D" parent="."]
+position = Vector2(72, 184)
+script = ExtResource("3_oecx5")
+player_scene_path = "uid://f0l5utwddd63"
+metadata/_custom_type_script = "uid://dpvsnrmcg8l0q"

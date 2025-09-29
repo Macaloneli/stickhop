@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://404w2tqm2gq6"]
+[gd_scene load_steps=12 format=3 uid="uid://404w2tqm2gq6"]
 
 [ext_resource type="FontFile" uid="uid://cu7p6ksqmo2fp" path="res://core/assets/fonts/Ldfcomicsansbold-zgma.ttf" id="1_qkuje"]
+[ext_resource type="Script" uid="uid://s7sno5o85b03" path="res://core/src/ui/singleplayer_button.gd" id="2_iwyxf"]
 [ext_resource type="Script" uid="uid://bndxq046kus8k" path="res://core/src/ui/bpm_scale_bump.gd" id="2_qoywa"]
 [ext_resource type="Script" uid="uid://tjxegpqjeuu" path="res://core/src/ost_rhythm_notifier.gd" id="3_f0s2b"]
+[ext_resource type="Resource" uid="uid://bj00o468j4has" path="res://core/resources/levels/test/proto.tres" id="3_q834n"]
 
 [sub_resource type="Theme" id="Theme_qkuje"]
 default_font = ExtResource("1_qkuje")
@@ -72,10 +74,11 @@ alignment = 1
 [node name="SingleplayerButton" type="Button" parent="MenuContainer"]
 layout_mode = 2
 text = "Singleplayer"
+script = ExtResource("2_iwyxf")
+proto_level = ExtResource("3_q834n")
 
 [node name="MultiplayerButton" type="Button" parent="MenuContainer"]
 layout_mode = 2
-disabled = true
 text = "Multiplayer"
 
 [node name="SettingsButton" type="Button" parent="MenuContainer"]

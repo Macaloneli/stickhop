@@ -23,6 +23,7 @@ boot_splash/minimum_display_time=3
 [autoload]
 
 OSTController="*res://core/src/ost_controller.tscn"
+NetBackendManager="*res://core/src/networking/net_backend_manager.gd"
 
 [display]
 

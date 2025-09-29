@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2rurw5ollute"]
+[gd_scene load_steps=4 format=3 uid="uid://d2rurw5ollute"]
 
 [ext_resource type="Script" uid="uid://5qd4lasyykee" path="res://core/src/levels/level_controller.gd" id="1_42h0n"]
 [ext_resource type="Resource" uid="uid://bj00o468j4has" path="res://core/resources/levels/test/proto.tres" id="2_mlund"]
+[ext_resource type="Script" uid="uid://oiqgsy1qnqov" path="res://core/src/gamemodes/gamemode_controller.gd" id="3_cc5kg"]
 
 [node name="WorldRoot" type="Node"]
 metadata/_edit_vertical_guides_ = [301.0]
@@ -10,3 +11,7 @@ metadata/_edit_vertical_guides_ = [301.0]
 script = ExtResource("1_42h0n")
 current_level_resource = ExtResource("2_mlund")
 metadata/_custom_type_script = "uid://5qd4lasyykee"
+
+[node name="GamemodeController" type="Node" parent="."]
+script = ExtResource("3_cc5kg")
+metadata/_custom_type_script = "uid://oiqgsy1qnqov"

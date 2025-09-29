@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://f0l5utwddd63"]
+[gd_scene load_steps=12 format=3 uid="uid://f0l5utwddd63"]
 
 [ext_resource type="PackedScene" uid="uid://wmry7i1a3h60" path="res://core/src/entities/living/humanoid.tscn" id="1_km3t1"]
 [ext_resource type="Script" uid="uid://djinmo6gkeool" path="res://core/src/components/player_input_component.gd" id="2_2dayb"]
+[ext_resource type="Script" uid="uid://dfewma1m3ard6" path="res://core/src/lookahead_camera.gd" id="3_2i87x"]
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_pvjtl"]
 target_nodepath = NodePath("IKContainer/LegIKTargetLeft")
@@ -158,3 +159,6 @@ texture = SubResource("NoiseTexture2D_pvjtl")
 
 [node name="GripDetectionRight" parent="PhysicsRig/RightLowerArm" index="3"]
 collision_layer = 4
+
+[node name="Camera2D" type="Camera2D" parent="." index="16"]
+script = ExtResource("3_2i87x")

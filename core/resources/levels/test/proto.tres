@@ -7,5 +7,5 @@
 script = ExtResource("1_dhte8")
 level_name = "ProtoLevel"
 level_music = ExtResource("1_77li6")
-level_scene_path = "res://core/src/levels/scenes/proto.tscn"
+level_scene_path = "uid://bgcviiuysl815"
 metadata/_custom_type_script = "uid://bm1ig0ci1wo3s"

@@ -3,7 +3,7 @@ class_name LevelResource
 
 @export var level_name: String
 @export var level_music: AudioStream
-@export_file_path("*.tscn") var level_scene_path: String
+@export_file("*.tscn") var level_scene_path: String
 
 
 func load_unparented():
