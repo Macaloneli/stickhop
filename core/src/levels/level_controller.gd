@@ -18,10 +18,16 @@ func _ready() -> void:
 		load_lvl.call_deferred(current_level_resource)
 
 
+func unload_lvl():
+	if not currently_loaded_lvl:
+		return
+	currently_loaded_lvl.queue_free()
+
+
 func load_lvl(res: LevelResource):
-	if currently_loaded_lvl:
-		currently_loaded_lvl.queue_free()
+	unload_lvl()
 	var new_level = res.load_unparented()
 	owner.add_child(new_level)
 	level_loaded.emit("test", new_level)
 	currently_loaded_lvl = new_level
+	OSTController.play()
