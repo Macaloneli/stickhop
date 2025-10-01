@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://ci22eyvag6a5h"]
+
+[ext_resource type="Script" uid="uid://bm1ig0ci1wo3s" path="res://core/src/levels/level_resource.gd" id="1_46ckm"]
+[ext_resource type="AudioStream" uid="uid://dxq73483lutkx" path="res://core/assets/sounds/music/funky_town_low_quality.mp3" id="1_xnanu"]
+
+[resource]
+script = ExtResource("1_46ckm")
+level_name = "Main Menu"
+level_music = ExtResource("1_xnanu")
+level_scene_path = "uid://404w2tqm2gq6"
+metadata/_custom_type_script = "uid://bm1ig0ci1wo3s"

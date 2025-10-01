@@ -1,3 +1,4 @@
+class_name LookaheadCamera2D
 extends Camera2D
 
 @export var lookahead_distance: float = 32

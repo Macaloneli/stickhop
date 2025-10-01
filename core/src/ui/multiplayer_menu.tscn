@@ -1,39 +1,38 @@
-[gd_scene format=3 uid="uid://cu0cnalnlsace"]
+[gd_scene load_steps=3 format=3 uid="uid://cu0cnalnlsace"]
 
-[node name="MultiplayerMenu" type="Control"]
-layout_mode = 3
+[ext_resource type="Theme" uid="uid://kuighfpckbtm" path="res://core/resources/ui/themes/main_menu.tres" id="1_i2fwr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2fwr"]
+font_size = 32
+
+[node name="MultiplayerMenu" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_i2fwr")
+metadata/_edit_use_anchors_ = true
 
 [node name="MenuTitle" type="Label" parent="."]
-layout_mode = 0
-anchor_right = 0.1390625
-anchor_bottom = 0.06388889
-offset_right = -49.0
+layout_mode = 2
 text = "Multiplayer"
+label_settings = SubResource("LabelSettings_i2fwr")
 metadata/_edit_use_anchors_ = true
 
 [node name="ConnectionSettingsSection" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 alignment = 1
 
 [node name="HostSection" type="HBoxContainer" parent="ConnectionSettingsSection"]
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="ConnectionSettingsSection/HostSection"]
+[node name="HostGame" type="Button" parent="ConnectionSettingsSection/HostSection"]
 layout_mode = 2
 text = "Host Game"
 
-[node name="LineEdit" type="LineEdit" parent="ConnectionSettingsSection/HostSection"]
+[node name="Port" type="LineEdit" parent="ConnectionSettingsSection/HostSection"]
 layout_mode = 2
 placeholder_text = "Port"
 virtual_keyboard_type = 2
@@ -42,16 +41,16 @@ virtual_keyboard_type = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="ConnectionSettingsSection/JoinSection"]
+[node name="JoinGame" type="Button" parent="ConnectionSettingsSection/JoinSection"]
 layout_mode = 2
 text = "Join Game"
 
-[node name="LineEdit" type="LineEdit" parent="ConnectionSettingsSection/JoinSection"]
+[node name="IP" type="LineEdit" parent="ConnectionSettingsSection/JoinSection"]
 layout_mode = 2
 placeholder_text = "IP"
 virtual_keyboard_type = 2
 
-[node name="LineEdit2" type="LineEdit" parent="ConnectionSettingsSection/JoinSection"]
+[node name="Port" type="LineEdit" parent="ConnectionSettingsSection/JoinSection"]
 layout_mode = 2
 placeholder_text = "Port"
 virtual_keyboard_type = 2

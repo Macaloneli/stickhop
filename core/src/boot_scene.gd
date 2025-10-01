@@ -1,19 +1,26 @@
 class_name BootScene
 extends Node
 
-const MAIN_MENU_SCENE_PATH: String = "res://src/scenes/main_menu.tscn"
+static var done: bool = false
+
+@export var initial_lvl: LevelResource
 
 
 func _ready() -> void:
-    print("BootScene ready, bootstrapping game managers. . .")
-    _bootstrap_game_managers()
-    print("Bootstrapping complete, changing to main menu scene. . .")
-    get_tree().change_scene_to_file(MAIN_MENU_SCENE_PATH)
-    print("Scene change complete.")
+	print("BootScene ready, bootstrapping game managers. . .")
+	_deferred_ready.call_deferred()
+
+
+func _deferred_ready():
+	_bootstrap_game_managers()
+	print("Bootstrapping complete. Loading start level. . .")
+	LevelManager.instance.load_lvl(initial_lvl)
+	print("BootScene done!")
+	done = true
 
 
 func _bootstrap_game_managers():
-    add_child(NetBackendManager.new())
-    add_child(GamemodeManager.new())
-    add_child(LevelManager.new())
-    add_child(OSTManager.new())
+	add_child(NetBackendManager.new())
+	add_child(GamemodeManager.new())
+	add_child(LevelManager.new())
+	add_child(OSTManager.new())

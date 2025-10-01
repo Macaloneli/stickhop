@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://gr0yqwvkvadd"]
+
+[ext_resource type="Script" uid="uid://ce4undp8etbwg" path="res://proto_content/src/gamemode_test.gd" id="1_q6omn"]
+[ext_resource type="Script" uid="uid://dy1jxyqprp0ae" path="res://core/src/gamemodes/gamemode_resource.gd" id="2_xe10w"]
+[ext_resource type="Resource" uid="uid://blybw08hcome" path="res://core/resources/gamemodes/test_gamemode.tres" id="3_etxfc"]
+[ext_resource type="Script" uid="uid://bm1ig0ci1wo3s" path="res://core/src/levels/level_resource.gd" id="4_cu7rf"]
+[ext_resource type="Resource" uid="uid://bj00o468j4has" path="res://core/resources/levels/test/proto.tres" id="5_sk4k5"]
+
+[sub_resource type="Resource" id="Resource_l1hp1"]
+script = ExtResource("2_xe10w")
+unique_name = &"Test2"
+description = "Free mode meant for debugging. Players have no goal and can do whatever."
+levels = Array[ExtResource("4_cu7rf")]([ExtResource("5_sk4k5")])
+metadata/_custom_type_script = "uid://dy1jxyqprp0ae"
+
+[node name="GamemodeTest" type="Node"]
+script = ExtResource("1_q6omn")
+test_gamemodes = Array[ExtResource("2_xe10w")]([ExtResource("3_etxfc"), SubResource("Resource_l1hp1")])
+metadata/_custom_type_script = "uid://ce4undp8etbwg"

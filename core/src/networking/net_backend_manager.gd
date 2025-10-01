@@ -5,6 +5,8 @@ enum NetPlatformTarget { ENET, STEAM, WEB }
 
 const MAX_PEERS = 8
 
+static var instance: NetBackendManager
+
 var current_backend: BaseNetBackend
 
 
@@ -17,7 +19,8 @@ func pick_backend(target: NetPlatformTarget) -> BaseNetBackend:
 
 
 func _ready() -> void:
-	super._ready()
+	instance = self
+	name = "NetBackendManager"
 	current_backend = pick_backend(NetPlatformTarget.ENET)
 	add_child(current_backend)
 	current_backend.setup.call_deferred()

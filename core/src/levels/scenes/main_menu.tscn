@@ -1,13 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://404w2tqm2gq6"]
 
+[ext_resource type="Theme" uid="uid://kuighfpckbtm" path="res://core/resources/ui/themes/main_menu.tres" id="1_j2oev"]
 [ext_resource type="FontFile" uid="uid://cu7p6ksqmo2fp" path="res://core/assets/fonts/Ldfcomicsansbold-zgma.ttf" id="1_qkuje"]
-[ext_resource type="Script" uid="uid://s7sno5o85b03" path="res://core/src/ui/singleplayer_button.gd" id="2_iwyxf"]
-[ext_resource type="Script" uid="uid://bndxq046kus8k" path="res://core/src/ui/bpm_scale_bump.gd" id="2_qoywa"]
+[ext_resource type="Script" uid="uid://s7sno5o85b03" path="res://core/src/ui/elements/singleplayer_button.gd" id="2_iwyxf"]
+[ext_resource type="Script" uid="uid://bndxq046kus8k" path="res://core/src/ui/elements/bpm_scale_bump.gd" id="2_qoywa"]
 [ext_resource type="Script" uid="uid://tjxegpqjeuu" path="res://core/src/ost_rhythm_notifier.gd" id="3_f0s2b"]
 [ext_resource type="Resource" uid="uid://bj00o468j4has" path="res://core/resources/levels/test/proto.tres" id="3_q834n"]
-
-[sub_resource type="Theme" id="Theme_qkuje"]
-default_font = ExtResource("1_qkuje")
 
 [sub_resource type="LabelSettings" id="LabelSettings_uqkvv"]
 font = ExtResource("1_qkuje")
@@ -59,7 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_qkuje")
+theme = ExtResource("1_j2oev")
 metadata/_edit_use_anchors_ = true
 
 [node name="MenuContainer" type="VBoxContainer" parent="."]
@@ -76,6 +74,7 @@ layout_mode = 2
 text = "Singleplayer"
 script = ExtResource("2_iwyxf")
 proto_level = ExtResource("3_q834n")
+submenu_scene_path = "uid://fnsxeaa1rta2"
 
 [node name="MultiplayerButton" type="Button" parent="MenuContainer"]
 layout_mode = 2

@@ -160,5 +160,8 @@ texture = SubResource("NoiseTexture2D_pvjtl")
 [node name="GripDetectionRight" parent="PhysicsRig/RightLowerArm" index="3"]
 collision_layer = 4
 
+[node name="TetherToPhysicsComponent" parent="." index="8"]
+pull_speed = 128.0
+
 [node name="Camera2D" type="Camera2D" parent="." index="16"]
 script = ExtResource("3_2i87x")

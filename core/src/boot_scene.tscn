@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2rurw5ollute"]
+[gd_scene load_steps=6 format=3 uid="uid://d2rurw5ollute"]
 
 [ext_resource type="Script" uid="uid://dfubxegrwqkjl" path="res://core/src/boot_scene.gd" id="1_6wb7p"]
+[ext_resource type="Resource" uid="uid://ci22eyvag6a5h" path="res://core/resources/levels/test/main_menu.tres" id="2_cdqaj"]
+[ext_resource type="PackedScene" uid="uid://gr0yqwvkvadd" path="res://proto_content/src/gamemode_test.tscn" id="3_te37g"]
+[ext_resource type="Script" uid="uid://dy1jxyqprp0ae" path="res://core/src/gamemodes/gamemode_resource.gd" id="4_te37g"]
+[ext_resource type="Resource" uid="uid://blybw08hcome" path="res://core/resources/gamemodes/test_gamemode.tres" id="5_w15ch"]
 
 [node name="BootScene" type="Node"]
 script = ExtResource("1_6wb7p")
+initial_lvl = ExtResource("2_cdqaj")
 metadata/_custom_type_script = "uid://dfubxegrwqkjl"
 metadata/_edit_vertical_guides_ = [301.0]
+
+[node name="GamemodeTest" parent="." instance=ExtResource("3_te37g")]
+test_gamemodes = Array[ExtResource("4_te37g")]([ExtResource("5_w15ch")])

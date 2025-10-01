@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://kuighfpckbtm"]
+
+[ext_resource type="FontFile" uid="uid://cu7p6ksqmo2fp" path="res://core/assets/fonts/Ldfcomicsansbold-zgma.ttf" id="1_ll51q"]
+
+[resource]
+default_font = ExtResource("1_ll51q")

@@ -6,7 +6,7 @@ class_name LevelResource
 @export_file("*.tscn") var level_scene_path: String
 
 
-func load_unparented():
+func load_unparented() -> Node:
 	var packed_scene: PackedScene = ResourceLoader.load(level_scene_path)
 	var root_node = packed_scene.instantiate()
 	return root_node

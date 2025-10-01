@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://c506peuq6mt7t"]
+
+[ext_resource type="Texture2D" uid="uid://cslntgvlqlrcu" path="res://icon.svg" id="1_42vsw"]
+[ext_resource type="ButtonGroup" uid="uid://l31pndvwsrbj" path="res://core/resources/ui/gamemode_select_item_button_group.tres" id="1_lw73m"]
+[ext_resource type="Texture2D" uid="uid://cx32ayykjjdtb" path="res://core/assets/sprites/icons/Info.svg" id="2_lw73m"]
+[ext_resource type="Script" uid="uid://dt6hpcmelklnr" path="res://core/src/ui/elements/gamemode_select_item.gd" id="3_46ots"]
+[ext_resource type="Script" uid="uid://ck8bgf7h58kwr" path="res://core/src/ui/elements/selected_label.gd" id="3_ggekh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ggekh"]
+
+[node name="GamemodeSelectItem" type="TextureButton" node_paths=PackedStringArray("gamemode_name_label", "info_icon")]
+custom_minimum_size = Vector2(128, 128)
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.32222223
+anchor_right = 0.6
+anchor_bottom = 0.67777777
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+button_group = ExtResource("1_lw73m")
+texture_normal = ExtResource("1_42vsw")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("3_46ots")
+gamemode_name_label = NodePath("GamemodeNameLabel")
+info_icon = NodePath("InfoHover")
+metadata/_edit_use_anchors_ = true
+
+[node name="GamemodeNameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1796875
+grow_horizontal = 2
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectedLabel" type="Label" parent="." node_paths=PackedStringArray("button")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Selected"
+label_settings = SubResource("LabelSettings_ggekh")
+horizontal_alignment = 2
+vertical_alignment = 2
+script = ExtResource("3_ggekh")
+button = NodePath("..")
+
+[node name="InfoHover" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0546875
+anchor_top = 0.7421875
+anchor_right = 0.2734375
+anchor_bottom = 0.9609375
+grow_vertical = 0
+texture = ExtResource("2_lw73m")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true

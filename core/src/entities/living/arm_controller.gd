@@ -1,5 +1,7 @@
-extends Node
 class_name ArmController
+extends Node
+
+enum LimbSide { LEFT, RIGHT }
 
 const RESTING_ARM_STIFFNESS: float = 20
 const POINT_ARM_STIFFNESS: float = 80
@@ -15,8 +17,7 @@ const POINT_ARM_STIFFNESS: float = 80
 
 var grip_joint_left: FixedJoint2D
 var grip_joint_right: FixedJoint2D
-
-enum LimbSide { LEFT, RIGHT }
+var punch_arm: LimbSide = LimbSide.RIGHT
 
 
 func _physics_process(_delta: float) -> void:

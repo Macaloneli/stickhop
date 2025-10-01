@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://fnsxeaa1rta2"]
+
+[ext_resource type="Theme" uid="uid://kuighfpckbtm" path="res://core/resources/ui/themes/main_menu.tres" id="1_e5tau"]
+[ext_resource type="Script" uid="uid://co76o3n0la3y8" path="res://core/src/ui/gamemode_config_menu.gd" id="2_4w2o2"]
+[ext_resource type="Script" uid="uid://uwny1nqooreh" path="res://core/src/ui/gamemode_config_start_button.gd" id="3_4w2o2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q5psk"]
+font_size = 20
+
+[node name="GamemodeConfigMenu" type="VBoxContainer" node_paths=PackedStringArray("item_section", "start_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e5tau")
+alignment = 1
+script = ExtResource("2_4w2o2")
+item_button_scene_path = "uid://c506peuq6mt7t"
+item_section = NodePath("GamemodeSelectSection")
+start_button = NodePath("StartButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuTitle" type="Label" parent="."]
+layout_mode = 2
+text = "Gamemode Select"
+label_settings = SubResource("LabelSettings_q5psk")
+
+[node name="GamemodeSelectLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Choose a gamemode:"
+
+[node name="GamemodeSelectSection" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 2
+disabled = true
+text = "Start"
+script = ExtResource("3_4w2o2")
