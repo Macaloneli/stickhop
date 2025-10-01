@@ -20,11 +20,6 @@ boot_splash/show_image=false
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=3
 
-[autoload]
-
-OSTController="*res://core/src/ost_controller.tscn"
-NetBackendManager="*res://core/src/networking/net_backend_manager.gd"
-
 [display]
 
 window/size/viewport_width=640
@@ -32,6 +27,10 @@ window/size/viewport_height=360
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdLinter/plugin.cfg", "res://addons/gdscript_formatter/plugin.cfg")
 
 [global_group]
 

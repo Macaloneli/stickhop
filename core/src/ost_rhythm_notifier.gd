@@ -1,9 +1,11 @@
-extends RhythmNotifier
+@tool
 class_name OSTRhythmNotifier
+extends RhythmNotifier
+
 
 func _process(_delta: float) -> void:
-	if OSTController.stream == null:
+	if OSTManager.stream == null:
 		return
-	
-	bpm = OSTController.stream.get_bpm()
-	audio_stream_player = OSTController
+
+	bpm = OSTManager.stream.get_bpm()
+	audio_stream_player = OSTManager.instance

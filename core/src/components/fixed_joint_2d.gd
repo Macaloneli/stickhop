@@ -8,10 +8,10 @@ var rotation_fix: float = 0
 
 # Connect both bodies to the joint, save the relative rotation, and
 # connect signals to disconnect the joint if either body is deleted
-func connect_bodies(body1 : PhysicsBody2D, body2 : PhysicsBody2D):
+func connect_bodies(body1: PhysicsBody2D, body2: PhysicsBody2D):
 	node_a = body1.get_path()
 	node_b = body2.get_path()
-	
+
 	# This rotation fix is used in physics_process to keep the
 	# rotation of the parent fixed relative to another body as it rotates
 	var angle_to_body = (global_position - body2.global_position).angle()
@@ -36,9 +36,9 @@ func _physics_process(_delta):
 			var angle_to_body = (global_position - object.global_position).angle()
 			get_parent().set_deferred("rotation", angle_to_body + rotation_fix)
 		else:
-			node_b = ''
-	
+			node_b = ""
+
 
 func disconnect_joint():
-	node_a = ''
-	node_b = ''
+	node_a = ""
+	node_b = ""

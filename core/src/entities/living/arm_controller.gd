@@ -16,21 +16,30 @@ const POINT_ARM_STIFFNESS: float = 80
 var grip_joint_left: FixedJoint2D
 var grip_joint_right: FixedJoint2D
 
-enum LimbSide {
-	LEFT,
-	RIGHT
-}
+enum LimbSide { LEFT, RIGHT }
 
 
 func _physics_process(_delta: float) -> void:
 	var modification_stack: SkeletonModificationStack2D = skeleton.get_modification_stack()
 	var two_bone_left: SkeletonModification2DTwoBoneIK = modification_stack.get_modification(2)
 	var two_bone_right: SkeletonModification2DTwoBoneIK = modification_stack.get_modification(3)
-	two_bone_left.flip_bend_direction = false if sign(humanoid.left_arm_point_vector.x - humanoid.global_position.x) < 0 else true
-	two_bone_right.flip_bend_direction = false if sign(humanoid.right_arm_point_vector.x - humanoid.global_position.x) < 0 else true
-	
-	target_left.global_position = humanoid.left_arm_point_vector if humanoid.left_arm_point_vector != Vector2.ZERO else humanoid.global_position
-	target_right.global_position = humanoid.right_arm_point_vector if humanoid.right_arm_point_vector != Vector2.ZERO else humanoid.global_position
+	two_bone_left.flip_bend_direction = (
+		false if sign(humanoid.left_arm_point_vector.x - humanoid.global_position.x) < 0 else true
+	)
+	two_bone_right.flip_bend_direction = (
+		false if sign(humanoid.right_arm_point_vector.x - humanoid.global_position.x) < 0 else true
+	)
+
+	target_left.global_position = (
+		humanoid.left_arm_point_vector
+		if humanoid.left_arm_point_vector != Vector2.ZERO
+		else humanoid.global_position
+	)
+	target_right.global_position = (
+		humanoid.right_arm_point_vector
+		if humanoid.right_arm_point_vector != Vector2.ZERO
+		else humanoid.global_position
+	)
 	for bone in left_arm_phys_bones:
 		if humanoid.left_arm_point_vector != Vector2.ZERO:
 			bone.angular_stiffness = POINT_ARM_STIFFNESS
@@ -69,7 +78,7 @@ func _process_grip(side: LimbSide):
 			hand = right_arm_phys_bones.back()
 			area = grip_area_right
 	colliding = area.has_overlapping_bodies()
-	
+
 	if humanoid.grip and colliding and not joint_already_exists:
 		var obj: Node2D = area.get_overlapping_bodies().front()
 		if obj == null:

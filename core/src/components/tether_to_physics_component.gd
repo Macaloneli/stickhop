@@ -11,11 +11,11 @@ class_name TetherToPhysicsComponent
 func _physics_process(delta: float) -> void:
 	var pos_diff = bodyB.global_position - bodyA.global_position
 	var p = pos_diff * pull_speed
-	
+
 	if bodyA.get("velocity"):
 		var d = -bodyA.velocity * pull_damp
 		var force = p + d
-		
+
 		if axis.x >= 1:
 			bodyA.velocity.x += force.x * delta
 		if axis.y >= 1:
@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	elif bodyA.get("linear_velocity"):
 		var d = -bodyA.linear_velocity * pull_damp
 		var force = p + d
-		
+
 		if axis.x >= 1:
 			bodyA.linear_velocity.x += force.x * delta
 		if axis.y >= 1:

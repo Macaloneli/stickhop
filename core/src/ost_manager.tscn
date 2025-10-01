@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdfknh2s6lb0p"]
+
+[ext_resource type="AudioStream" uid="uid://cm23qot4cjnn0" path="res://core/resources/levels/music_playlists/fallback.tres" id="1_nv7wf"]
+
+[node name="OSTManager" type="AudioStreamPlayer"]
+stream = ExtResource("1_nv7wf")

@@ -2,6 +2,7 @@ extends Label
 
 @export var rhythm_notifier: RhythmNotifier
 
+
 func _ready() -> void:
 	rhythm_notifier.beat.connect(_bump)
 

@@ -12,32 +12,55 @@ class_name FootplantController
 func _physics_process(delta: float) -> void:
 	var avg_pos = (ik_target_left.global_position + ik_target_right.global_position) * 0.5
 	var step_dest: Vector2 = Vector2.ZERO
-	
-	raycast.position.x = lerp(raycast.position.x, humanoid.direction * (25.0 if humanoid.crouch else 30.0), 3 * delta)
+
+	raycast.position.x = lerp(
+		raycast.position.x, humanoid.direction * (25.0 if humanoid.crouch else 30.0), 3 * delta
+	)
 	var modification_stack: SkeletonModificationStack2D = skeleton.get_modification_stack()
 	var two_bone_left: SkeletonModification2DTwoBoneIK = modification_stack.get_modification(0)
 	var two_bone_right: SkeletonModification2DTwoBoneIK = modification_stack.get_modification(1)
-	
+
 	if humanoid.direction != 0:
 		two_bone_left.flip_bend_direction = humanoid.direction < 0
 		two_bone_right.flip_bend_direction = humanoid.direction < 0
-	
+
 	if not humanoid.is_on_floor():
-		ik_target_left.global_position = humanoid.global_position + Vector2(-max(4, humanoid.velocity.normalized().y * 10), max(15, humanoid.velocity.normalized().y * 15))
-		ik_target_right.global_position = humanoid.global_position + Vector2(max(4, humanoid.velocity.normalized().y * 10), max(15, humanoid.velocity.normalized().y * 15))
+		ik_target_left.global_position = (
+			humanoid.global_position
+			+ Vector2(
+				-max(4, humanoid.velocity.normalized().y * 10),
+				max(15, humanoid.velocity.normalized().y * 15)
+			)
+		)
+		ik_target_right.global_position = (
+			humanoid.global_position
+			+ Vector2(
+				max(4, humanoid.velocity.normalized().y * 10),
+				max(15, humanoid.velocity.normalized().y * 15)
+			)
+		)
 	else:
 		ik_target_left.global_position.y = humanoid.global_position.y + 33
 		ik_target_right.global_position.y = humanoid.global_position.y + 33
-	
+
 	if abs(avg_pos.x - hips.global_position.x) > 2 and raycast.is_colliding():
 		step_dest = raycast.get_collision_point()
 		var chosen_ik_target: Marker2D
-		if ik_target_right.global_position.distance_to(hips.global_position) > ik_target_left.global_position.distance_to(hips.global_position):
+		if (
+			ik_target_right.global_position.distance_to(hips.global_position)
+			> ik_target_left.global_position.distance_to(hips.global_position)
+		):
 			chosen_ik_target = ik_target_right
 		else:
 			chosen_ik_target = ik_target_left
-		
-		chosen_ik_target.global_position = chosen_ik_target.global_position.lerp(step_dest, delta * 60)
+
+		chosen_ik_target.global_position = chosen_ik_target.global_position.lerp(
+			step_dest, delta * 60
+		)
 	elif humanoid.direction == 0 and humanoid.is_on_floor():
-		ik_target_left.global_position = ik_target_left.global_position.lerp(humanoid.global_position + Vector2(-4, 33), delta * 60)
-		ik_target_right.global_position = ik_target_right.global_position.lerp(humanoid.global_position + Vector2(4, 33), delta * 60)
+		ik_target_left.global_position = ik_target_left.global_position.lerp(
+			humanoid.global_position + Vector2(-4, 33), delta * 60
+		)
+		ik_target_right.global_position = ik_target_right.global_position.lerp(
+			humanoid.global_position + Vector2(4, 33), delta * 60
+		)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2rurw5ollute"]
+
+[ext_resource type="Script" uid="uid://dfubxegrwqkjl" path="res://core/src/boot_scene.gd" id="1_6wb7p"]
+
+[node name="BootScene" type="Node"]
+script = ExtResource("1_6wb7p")
+metadata/_custom_type_script = "uid://dfubxegrwqkjl"
+metadata/_edit_vertical_guides_ = [301.0]

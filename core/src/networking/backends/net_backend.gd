@@ -2,8 +2,6 @@
 class_name BaseNetBackend
 extends Node
 
-@abstract func get_peer() -> MultiplayerPeer
-
 
 func _ready() -> void:
 	connect_multiplayer_signals.call_deferred()
@@ -22,6 +20,7 @@ func setup() -> void:
 	pass # Virtual method
 
 
+@abstract func get_peer() -> MultiplayerPeer
 @abstract func _self_connected()
 @abstract func _self_connect_failed()
 @abstract func _server_disconnected()

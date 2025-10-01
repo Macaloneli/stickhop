@@ -3,6 +3,7 @@ extends Skeleton2D
 @export var humanoid: Humanoid
 @export var music_bumper: OSTRhythmNotifier
 
+
 func _ready() -> void:
 	get_modification_stack().enabled = true
 	if music_bumper != null:

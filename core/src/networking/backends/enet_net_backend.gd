@@ -26,11 +26,11 @@ func join_game(ip: String) -> Error:
 	return ret
 
 
-func _peer_connected(id: int):
+func _peer_connected(_id: int):
 	pass
 
 
-func _peer_disconnected(id: int):
+func _peer_disconnected(_id: int):
 	pass
 
 
