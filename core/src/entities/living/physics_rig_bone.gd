@@ -1,5 +1,5 @@
-extends RigidBody2D
 class_name PhysicsRigBone
+extends RigidBody2D
 
 const RESET_DISTANCE: float = 30
 

@@ -18,7 +18,6 @@ var current_level_resource: LevelResource:
 			load_lvl(value)
 		backing_current_level_resource = value
 var backing_current_level_resource: LevelResource
-
 var currently_loaded_lvl: Node
 
 

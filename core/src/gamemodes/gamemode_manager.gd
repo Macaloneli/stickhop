@@ -42,6 +42,9 @@ func load_gamemode(gm_res: GamemodeResource):
 		return
 	add_child(current_gamemode_controller_handle)
 	current_gamemode = gm_res
+	level_manager = LevelManager.instance
+	if not gm_res.levels.is_empty():
+		level_manager.load_lvl(gm_res.levels.front())
 
 
 func dispose_current_gamemode_controller():

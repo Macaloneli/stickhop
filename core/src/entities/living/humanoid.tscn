@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://wmry7i1a3h60"]
+[gd_scene load_steps=36 format=3 uid="uid://wmry7i1a3h60"]
 
 [ext_resource type="Script" uid="uid://bs7t4apy6xgv6" path="res://core/src/entities/living/humanoid.gd" id="1_ybg4g"]
 [ext_resource type="Script" uid="uid://ccbjvfdk0lim7" path="res://core/src/entities/living/anim_rig.gd" id="2_4lrt3"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://csys41fvomrau" path="res://core/src/entities/living/step_up_controller.gd" id="7_psuvc"]
 [ext_resource type="Script" uid="uid://tjxegpqjeuu" path="res://core/src/ost_rhythm_notifier.gd" id="8_jg4hc"]
 [ext_resource type="Script" uid="uid://dqfu2qfyxogw4" path="res://core/src/entities/living/arm_controller.gd" id="11_g151c"]
+[ext_resource type="Script" uid="uid://d350u8evihs1u" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="12_t5auj"]
+[ext_resource type="Script" uid="uid://dour8fehaaugp" path="res://addons/netfox/tick-interpolator.gd" id="13_g8ecb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_psuvc"]
 radius = 7.0
@@ -67,6 +69,9 @@ size = Vector2(7, 15)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q781o"]
 size = Vector2(16, 16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mggw0"]
+size = Vector3(10, 10, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_hmjwd"]
 size = Vector2(15, 5)
@@ -256,7 +261,13 @@ position = Vector2(-4, 33)
 
 [node name="ArmIKTargetRight" type="Marker2D" parent="AnimRig"]
 
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="AnimRig/ArmIKTargetRight"]
+mesh = SubResource("BoxMesh_mggw0")
+
 [node name="ArmIKTargetLeft" type="Marker2D" parent="AnimRig"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="AnimRig/ArmIKTargetLeft"]
+mesh = SubResource("BoxMesh_mggw0")
 
 [node name="PhysicsRig" type="Node2D" parent="."]
 
@@ -692,3 +703,17 @@ target_position = Vector2(-20, 0)
 [node name="StepUpHighLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 15)
 target_position = Vector2(-20, 0)
+
+[node name="RollbackSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("12_t5auj")
+root = NodePath("..")
+enable_prediction = true
+state_properties = Array[String]([":global_transform"])
+input_properties = Array[String](["Input:state"])
+metadata/_custom_type_script = "uid://d350u8evihs1u"
+
+[node name="TickInterpolator" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("13_g8ecb")
+root = NodePath("..")
+properties = Array[String]([":global_transform"])
+metadata/_custom_type_script = "uid://dour8fehaaugp"

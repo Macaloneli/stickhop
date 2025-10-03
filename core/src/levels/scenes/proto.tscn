@@ -401,6 +401,7 @@ navigation_polygon = SubResource("NavigationPolygon_ipbqu")
 
 [node name="GrabbableBase" parent="." instance=ExtResource("2_oecx5")]
 position = Vector2(376, 224)
+mass = 2.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://f0l5utwddd63", "uid://omkfgjl1xdbs")

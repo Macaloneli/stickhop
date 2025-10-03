@@ -9,4 +9,5 @@ script = ExtResource("2_ny2nx")
 unique_name = &"Test"
 description = "Free mode meant for debugging. Players have no goal and can do whatever."
 levels = Array[ExtResource("1_g3tdm")]([ExtResource("2_53epy")])
+controller_path = "uid://o3vbp34urwmp"
 metadata/_custom_type_script = "uid://dy1jxyqprp0ae"
